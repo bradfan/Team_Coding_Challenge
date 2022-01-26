@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Driver {
@@ -8,17 +11,17 @@ public class Driver {
 
     public static void main(String[] args) throws IOException {
         TeamFile file = new TeamFile();
-             file.writeOutputOneFile();
+        file.writeOutputOneFile();
 
 
     }
 
-    public void createFileReader(String imagePath) throws FileNotFoundException {
-
-        FileReader input = new FileReader((imagePath));
-    }
-    public void stringsToArray1() throws IOException {
-        FileWriter myWriter1 = new FileWriter("test.txt");
-    }
+//    public void createFileReader(String imagePath) throws FileNotFoundException {
+//
+//        FileReader input = new FileReader((imagePath));
+//    }
+//    public void stringsToArray1() throws IOException {
+//        FileWriter myWriter1 = new FileWriter("test.txt");
+//    }
 
 }

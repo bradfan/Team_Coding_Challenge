@@ -18,20 +18,21 @@ public class TeamFile {
         int lastIndex = getInputOne.size() - 1;
         List<String> a = new ArrayList<>();
         List<String> b = new ArrayList<>();
+        
         for (int i = 0; i < halfwayIndex; i++) {
             a.add(getInputOne.get(i));
         }
         for (int i = halfwayIndex; i <= lastIndex; i++) {
             b.add(getInputOne.get(i));
         }
-        System.out.println("A: " + a);
-        System.out.println(a.get(1));
-        System.out.println("B: " + b);
+
         List<String> together = new ArrayList<>();
         for(int i = 0; i <= a.size() - 1; i++) {
             together.add(a.get(i) + " " + b.get(i));
         }
-        System.out.println(together);
+
+        var outputOne = Files.write(Paths.get("output_one.txt"), together, StandardCharsets.UTF_8,
+             StandardOpenOption.APPEND);
     }
 
 }

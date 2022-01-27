@@ -18,41 +18,90 @@ public class TeamFile {
         int lastIndex = getInputOne.size() - 1;
         List<String> a = new ArrayList<>();
         List<String> b = new ArrayList<>();
-        
         for (int i = 0; i < halfwayIndex; i++) {
             a.add(getInputOne.get(i));
         }
         for (int i = halfwayIndex; i <= lastIndex; i++) {
             b.add(getInputOne.get(i));
         }
-
         List<String> together = new ArrayList<>();
-        for(int i = 0; i <= a.size() - 1; i++) {
+        for (int i = 0; i <= a.size() - 1; i++) {
             together.add(a.get(i) + " " + b.get(i));
         }
-
         var outputOne = Files.write(Paths.get("output_one.txt"), together, StandardCharsets.UTF_8,
-             StandardOpenOption.APPEND);
+                StandardOpenOption.APPEND);
+    }
+
+    public void writeOutputTwoFile() throws IOException {
+        var getInputTwo = Files.lines(Paths.get("input/one_to_twenty_five.txt")).collect(Collectors.toList());
+        System.out.println(getInputTwo);
+        List<String> a = new ArrayList<>();
+        List<String> b = new ArrayList<>();
+        List<String> c = new ArrayList<>();
+        List<String> d = new ArrayList<>();
+        List<String> e = new ArrayList<>();
+        List<String> f = new ArrayList<>();
+
+        for (int i = 0; i <= getInputTwo.size() - 1; i += 9) {
+            a.add(getInputTwo.get(i));
+            f.add(getInputTwo.get(i));
+
+        }
+        for (int i = 1; i <= getInputTwo.size() - 1; i += 9) {
+            a.add(getInputTwo.get(i));
+            f.add(getInputTwo.get(i));
+
+        }
+        for (int i = 2; i <= getInputTwo.size() - 1; i += 9) {
+            b.add(getInputTwo.get(i));
+            f.add(getInputTwo.get(i));
+
+        }
+        for (int i = 3; i <= getInputTwo.size() - 1; i += 9) {
+            b.add(getInputTwo.get(i));
+            f.add(getInputTwo.get(i));
+
+        }
+        for (int i = 4; i <= getInputTwo.size() - 1; i += 9) {
+            c.add(getInputTwo.get(i));
+            f.add(getInputTwo.get(i));
+
+        }
+        for (int i = 5; i <= getInputTwo.size() - 1; i += 9) {
+            c.add(getInputTwo.get(i));
+            f.add(getInputTwo.get(i));
+
+        }
+        for (int i = 6; i <= getInputTwo.size() - 1; i += 9) {
+            d.add(getInputTwo.get(i));
+            f.add(getInputTwo.get(i));
+        }
+        for (int i = 7; i <= getInputTwo.size() - 1; i += 9) {
+            d.add(getInputTwo.get(i));
+            f.add(getInputTwo.get(i));
+        }
+        for (int i = 8; i <= getInputTwo.size() - 1; i += 9) {
+            e.add(getInputTwo.get(i));
+            f.add(getInputTwo.get(i));
+        }
+
+        System.out.println("A: " + a);
+        System.out.println("B: " + b);
+        System.out.println("C: " + c);
+        System.out.println("D: " + d);
+        System.out.println("E: " + e);
+        System.out.println("F: " + f);
+
+        var outputTwo = Files.write(Paths.get("output_two.txt"), f, StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE, StandardOpenOption.APPEND);
     }
 
 }
 
-
-//    public void writeOutputOneFile() throws IOException {
-////        var getInputOne = Files.lines(Paths.get("input_1.txt")).collect(Collectors.toList());
-////        System.out.println(getInputOne);
-////        int halfwayIndex = (getInputOne.size() / 2);
-////        List<String> a = new ArrayList<>();
-////        List<String> b = new ArrayList<>();
-////       for(int i = 0; i <= halfwayIndex; i++) {
-////           a.add(getInputOne.get(i));
-////       }
-////       for(int i = halfwayIndex + 1; i <= getInputOne.size()-1; i++) {
-////           b.add(getInputOne.get(i));
-////       }
-////        System.out.println("A: " + a);
-////        System.out.println("B: " + b);
-////
-//////        var oneData = getInputOne.stream().map(i -> i.concat()).collect(Collectors.toList());
-//////       var outputOne = Files.write(Paths.get("output_one.txt"), oneData, StandardCharsets.UTF_8,
-//////              StandardOpenOption.APPEND);
+//    One Ten Nineteen Two Eleven Twenty
+//    Three Twelve Twenty One Four
+//        Thirteen Twenty Two Five Fourteen
+//        Twenty Three Six Fifteen Twenty Four
+//        Seven Sixteen Twenty Five Eight
+//        Seventeen
+//    Nine Eighteen

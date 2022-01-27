@@ -28,8 +28,8 @@ public class TeamFile {
         for (int i = 0; i <= a.size() - 1; i++) {
             together.add(a.get(i) + " " + b.get(i));
         }
-        var outputOne = Files.write(Paths.get("output_one.txt"), together, StandardCharsets.UTF_8,
-                StandardOpenOption.APPEND);
+//        var outputOne = Files.write(Paths.get("output_one.txt"), together, StandardCharsets.UTF_8,
+//                StandardOpenOption.APPEND);
     }
 
     public void writeOutputTwoFile() throws IOException {

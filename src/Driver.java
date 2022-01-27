@@ -12,11 +12,14 @@ public class Driver {
 
     public static void main(String[] args) throws IOException {
         TestOutputOne test = new TestOutputOne();
+        TeamFile file = new TeamFile();
+//        file.writeOutputOneFile();
 
-        firstProblem("C:\\Team_Coding_Challenge\\input\\one_to_seven.txt");
-        secondProblem("C:\\Team_Coding_Challenge\\input\\one_to_twenty_five.txt");
-        generateTextFile(firstProblem("C:\\Team_Coding_Challenge\\input\\one_to_seven.txt"));
-        generateTextFile(secondProblem("C:\\Team_Coding_Challenge\\input\\one_to_twenty_five.txt"));
+
+        firstProblem("input/one_to_seven.txt");
+        secondProblem("input/one_to_twenty_five.txt");
+        generateTextFile(firstProblem("input/one_to_seven.txt"));
+        generateSecondTextFile(secondProblem("input/one_to_twenty_five.txt"));
 
 
     }
@@ -37,12 +40,17 @@ public class Driver {
                     return s1;
                 }
         );
-        System.out.println(reduce);
         return reduce;
     }
+
     public static void generateTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
         FileWriter myWriter1 = new FileWriter("solution.txt" );
-        myWriter1.write(String.valueOf(solution));
+        for (int i = 0; i < solution.size(); i++) {
+            for (int j = 0; j < solution.get(i).size(); j++) {
+                myWriter1.write(solution.get(i).get(j) + " ");
+            }
+            myWriter1.write("\n");
+        }
         myWriter1.close();
     }
 
@@ -63,8 +71,18 @@ public class Driver {
                     return s1;
                 }
         );
-        System.out.println(reduce);
+        System.out.println("Second Method: " + reduce);
         return reduce;
+    }
+    public static void generateSecondTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
+        FileWriter myWriter1 = new FileWriter("solution2.txt" );
+        for (int i = 0; i < solution.size(); i++) {
+            for (int j = 0; j < solution.get(i).size(); j++) {
+                myWriter1.write(solution.get(i).get(j) + " ");
+            }
+            myWriter1.write("\n");
+        }
+        myWriter1.close();
     }
 
     }

@@ -1,0 +1,23 @@
+One Ten Nineteen 
+Two Eleven Twenty 
+Three Twelve Twenty One 
+Four Thirteen Twenty Two 
+Five Fourteen Twenty Three 
+Six Fifteen Twenty Four 
+Seven Sixteen Twenty Five 
+Eight Seventeen 
+Nine Eighteen 
+
+
+    One Ten Nineteen Two Eleven Twenty
+    Three Twelve Twenty One Four
+    Thirteen Twenty Two Five Fourteen
+    Twenty Three Six Fifteen Twenty Four
+    Seven Sixteen Twenty Five Eight
+    Seventeen
+    Nine Eighteen
+
+
+
+
+

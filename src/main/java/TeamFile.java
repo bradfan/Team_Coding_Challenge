@@ -49,7 +49,7 @@ public class TeamFile {
         int numberOfArray = (int) Math.ceil(lines.size() / MAX_ROW_LENGTH);
         ArrayList<ArrayList<String>> reduce = lines.stream()
                 .reduce(new ArrayList<>(), (s, s2) -> {
-                            if (s.size() < index.get() % numberOfArray + 9) {
+                            if (s.size() < index.get() % numberOfArray + 1) {
                                 s.add(new ArrayList<>());
                             }
                             s.get((index.get() % numberOfArray)).add(lines.get(index.get()));
@@ -60,6 +60,7 @@ public class TeamFile {
                             return s1;
                         }
                 );
+        System.out.println(reduce);
         return reduce;
     }
 

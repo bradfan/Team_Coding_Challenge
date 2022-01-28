@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TeamFile {
 
-    public static ArrayList<ArrayList<String>> firstProblem() throws IOException {
+    public ArrayList<ArrayList<String>> firstProblem() throws IOException {
         double MAX_ROW_LENGTH = 2.0;
         AtomicInteger index = new AtomicInteger(0);
         List<String> lines = Files.readAllLines(Paths.get("input/one_to_seven.txt"));
@@ -31,7 +31,7 @@ public class TeamFile {
         return reduce;
     }
 
-    public static void generateTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
+    public void generateTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
         FileWriter myWriter1 = new FileWriter("solution.txt" );
         for (int i = 0; i < solution.size(); i++) {
             for (int j = 0; j < solution.get(i).size(); j++) {
@@ -42,7 +42,7 @@ public class TeamFile {
         myWriter1.close();
     }
 
-    public static ArrayList<ArrayList<String>> secondProblem() throws IOException {
+    public ArrayList<ArrayList<String>> secondProblem() throws IOException {
         double MAX_ROW_LENGTH = 3.0;
         AtomicInteger index = new AtomicInteger(0);
         List<String> lines = Files.readAllLines(Paths.get("input/one_to_twenty_five.txt"));
@@ -60,10 +60,10 @@ public class TeamFile {
                             return s1;
                         }
                 );
-        System.out.println("Second Method: " + reduce);
         return reduce;
     }
-    public static void generateSecondTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
+
+    public void generateSecondTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
         FileWriter myWriter1 = new FileWriter("solution2.txt" );
         for (int i = 0; i < solution.size(); i++) {
             for (int j = 0; j < solution.get(i).size(); j++) {

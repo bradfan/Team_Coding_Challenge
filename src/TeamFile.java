@@ -1,107 +1,81 @@
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class TeamFile {
 
-    public void writeOutputOneFile() throws IOException {
-        var getInputOne = Files.lines(Paths.get("input/one_to_seven.txt")).collect(Collectors.toList());
-        System.out.println(getInputOne);
-        int halfwayIndex = (getInputOne.size() / 2);
-        int lastIndex = getInputOne.size() - 1;
-        List<String> a = new ArrayList<>();
-        List<String> b = new ArrayList<>();
-        for (int i = 0; i < halfwayIndex; i++) {
-            a.add(getInputOne.get(i));
-        }
-        for (int i = halfwayIndex; i <= lastIndex; i++) {
-            b.add(getInputOne.get(i));
-        }
-        List<String> together = new ArrayList<>();
-        for (int i = 0; i <= a.size() - 1; i++) {
-            together.add(a.get(i) + " " + b.get(i));
-        }
-//        var outputOne = Files.write(Paths.get("output_one.txt"), together, StandardCharsets.UTF_8,
-//                StandardOpenOption.APPEND);
+    public static ArrayList<ArrayList<String>> firstProblem() throws IOException {
+        double MAX_ROW_LENGTH = 2.0;
+        AtomicInteger index = new AtomicInteger(0);
+        List<String> lines = Files.readAllLines(Paths.get("input/one_to_seven.txt"));
+        int numberOfArray = (int) Math.ceil(lines.size() / MAX_ROW_LENGTH);
+        ArrayList<ArrayList<String>> reduce = lines.stream()
+                .reduce(new ArrayList<>(), (s, s2) -> {
+                            if (s.size() < index.get() % numberOfArray + 1) {
+                                s.add(new ArrayList<>());
+                            }
+                            s.get((index.get() % numberOfArray)).add(lines.get(index.get()));
+                            index.incrementAndGet();
+                            return s;
+                        }, (s1, s2) -> {
+                            s1.addAll(s2);
+                            return s1;
+                        }
+                );
+        return reduce;
     }
 
-    public void writeOutputTwoFile() throws IOException {
-        var getInputTwo = Files.lines(Paths.get("input/one_to_twenty_five.txt")).collect(Collectors.toList());
-        System.out.println(getInputTwo);
-        List<String> a = new ArrayList<>();
-        List<String> b = new ArrayList<>();
-        List<String> c = new ArrayList<>();
-        List<String> d = new ArrayList<>();
-        List<String> e = new ArrayList<>();
-        List<String> f = new ArrayList<>();
-
-        for (int i = 0; i <= getInputTwo.size() - 1; i += 9) {
-            a.add(getInputTwo.get(i));
-            f.add(getInputTwo.get(i));
-
+    public static void generateTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
+        FileWriter myWriter1 = new FileWriter("solution.txt" );
+        for (int i = 0; i < solution.size(); i++) {
+            for (int j = 0; j < solution.get(i).size(); j++) {
+                myWriter1.write(solution.get(i).get(j) + " ");
+            }
+            myWriter1.write("\n");
         }
-        for (int i = 1; i <= getInputTwo.size() - 1; i += 9) {
-            a.add(getInputTwo.get(i));
-            f.add(getInputTwo.get(i));
-
-        }
-        for (int i = 2; i <= getInputTwo.size() - 1; i += 9) {
-            b.add(getInputTwo.get(i));
-            f.add(getInputTwo.get(i));
-
-        }
-        for (int i = 3; i <= getInputTwo.size() - 1; i += 9) {
-            b.add(getInputTwo.get(i));
-            f.add(getInputTwo.get(i));
-
-        }
-        for (int i = 4; i <= getInputTwo.size() - 1; i += 9) {
-            c.add(getInputTwo.get(i));
-            f.add(getInputTwo.get(i));
-
-        }
-        for (int i = 5; i <= getInputTwo.size() - 1; i += 9) {
-            c.add(getInputTwo.get(i));
-            f.add(getInputTwo.get(i));
-
-        }
-        for (int i = 6; i <= getInputTwo.size() - 1; i += 9) {
-            d.add(getInputTwo.get(i));
-            f.add(getInputTwo.get(i));
-        }
-        for (int i = 7; i <= getInputTwo.size() - 1; i += 9) {
-            d.add(getInputTwo.get(i));
-            f.add(getInputTwo.get(i));
-        }
-        for (int i = 8; i <= getInputTwo.size() - 1; i += 9) {
-            e.add(getInputTwo.get(i));
-            f.add(getInputTwo.get(i));
-        }
-
-        System.out.println("A: " + a);
-        System.out.println("B: " + b);
-        System.out.println("C: " + c);
-        System.out.println("D: " + d);
-        System.out.println("E: " + e);
-        System.out.println("F: " + f);
-
-        var outputTwo = Files.write(Paths.get("output_two.txt"), f, StandardCharsets.UTF_8,
-                StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        myWriter1.close();
     }
+
+    public static ArrayList<ArrayList<String>> secondProblem() throws IOException {
+        double MAX_ROW_LENGTH = 3.0;
+        AtomicInteger index = new AtomicInteger(0);
+        List<String> lines = Files.readAllLines(Paths.get("input/one_to_twenty_five.txt"));
+        int numberOfArray = (int) Math.ceil(lines.size() / MAX_ROW_LENGTH);
+        ArrayList<ArrayList<String>> reduce = lines.stream()
+                .reduce(new ArrayList<>(), (s, s2) -> {
+                            if (s.size() < index.get() % numberOfArray + 9) {
+                                s.add(new ArrayList<>());
+                            }
+                            s.get((index.get() % numberOfArray)).add(lines.get(index.get()));
+                            index.incrementAndGet();
+                            return s;
+                        }, (s1, s2) -> {
+                            s1.addAll(s2);
+                            return s1;
+                        }
+                );
+        System.out.println("Second Method: " + reduce);
+        return reduce;
+    }
+    public static void generateSecondTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
+        FileWriter myWriter1 = new FileWriter("solution2.txt" );
+        for (int i = 0; i < solution.size(); i++) {
+            for (int j = 0; j < solution.get(i).size(); j++) {
+                myWriter1.write(solution.get(i).get(j) + " ");
+            }
+            myWriter1.write("\n");
+        }
+        myWriter1.close();
+    }
+
+
 
 }
 
-//    One Ten Nineteen Two Eleven Twenty
-//    Three Twelve Twenty One Four
-//        Thirteen Twenty Two Five Fourteen
-//        Twenty Three Six Fifteen Twenty Four
-//        Seven Sixteen Twenty Five Eight
-//        Seventeen
-//    Nine Eighteen
+

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+// root path for test file:     input/larger_test_file.txt
 
 public class TeamFile {
 
@@ -33,7 +34,6 @@ public class TeamFile {
                 );
         return reduce;
     }
-
     public void generateTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
         FileWriter myWriter1 = new FileWriter("solution.txt" );
         for (int i = 0; i < solution.size(); i++) {
@@ -65,6 +65,7 @@ public class TeamFile {
                 );
         System.out.println(reduce);
         return reduce;
+
     }
 
     public void generateSecondTextFile(ArrayList<ArrayList<String>> solution) throws IOException {
